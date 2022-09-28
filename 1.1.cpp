@@ -10,7 +10,7 @@ using namespace std;
 *  \param z Третий параметр функции.
 *  \return Значение функции.
 */ 
-double getA (double x, double y, double z);
+const double getA (double x, double y, double z);
 
 /**
 *  \brief Функция расчета по заданной формуле.
@@ -19,7 +19,7 @@ double getA (double x, double y, double z);
 *  \param z Третий параметр функции.
 *  \return Значение функции.
 */ 
-double getB (double x, double y, double z);
+const double getB (double x, double y, double z);
 /**
 *  \brief Точка входа в программу.
 *  \return Возвращает 0 в случае успеха.
@@ -38,12 +38,12 @@ cout << " a = " << a << ", b = " << b << endl;
 return 0;
 }
 
-double getA (double x, double y, double z)
+const double getA (const double x, const double y, const double z)
 {
 return exp(-y *z ) * sin(x * z - y) - pow(abs(y * z + x), 1.0/2);
 }
 
-double getB (const double x, const double y, const double z)
+const double getB (const double x, const double y, const double z)
 {
 return y * sin(x*z*z*cos(2 * z)) - 1;
 }
