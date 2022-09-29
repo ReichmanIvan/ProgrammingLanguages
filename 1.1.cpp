@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+
 /**
 *  \brief Функция расчета по заданной формуле.
 *  \param x Первый параметр функции.
