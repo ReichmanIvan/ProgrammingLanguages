@@ -10,7 +10,7 @@ using namespace std;
 *  \param z Третий параметр функции.
 *  \return Значение функции.
 */ 
-const double getA (double x, double y, double z);
+const double getA (const double x, const double y, const double z);
 
 /**
 *  \brief Функция расчета по заданной формуле.
@@ -19,7 +19,7 @@ const double getA (double x, double y, double z);
 *  \param z Третий параметр функции.
 *  \return Значение функции.
 */ 
-const double getB (double x, double y, double z);
+const double getB (const double x, const double y, const double z);
 /**
 *  \brief Точка входа в программу.
 *  \return Возвращает 0 в случае успеха.
