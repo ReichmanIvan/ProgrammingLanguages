@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <limits>
 using namespace std;
 
 /**
@@ -52,5 +53,5 @@ double Calculation(const double x)
 
 bool IsExists(const double x)
 {
-    return x >= 0;
+    return (abs(x)) >= numeric_limits<double>::min();
 }
