@@ -53,5 +53,5 @@ double Calculation(const double x)
 
 bool IsExists(const double x)
 {
-    return (abs(x)) >= numeric_limits<double>::min();
+    return (abs(x)) > numeric_limits<double>::min();
 }
