@@ -1,4 +1,3 @@
-#define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -8,7 +7,6 @@ using namespace std;
  * \param message Побуждающее сообщение для пользователя.
  * \return Значение переменной.
  */
-
 double getVariable(const string& message);
 
 /**
@@ -17,7 +15,6 @@ double getVariable(const string& message);
 *\param b Второе число.
 *\return Значение функции.
 */
-
 double getSum(const double a, const double b);
 
 /**
@@ -25,7 +22,6 @@ double getSum(const double a, const double b);
 *\param a Первое число.
 *\param b Второе число.
 */
-
 double difference(const double a, const double b);
 
 /**
@@ -33,7 +29,6 @@ double difference(const double a, const double b);
 *\param a Первое число.
 *\param b Второе число.
 */
-
 double composition(const double a, const double b);
 
 /**
@@ -41,14 +36,12 @@ double composition(const double a, const double b);
 *\param a Первое число.
 *\param b Второе число.
 */
-
 double quotient(const double a, const double b);
 
 /**
 *\brief Точка входа в программу.
 *\return Возвращает 0 в случае успеха.
 */
-
 enum class userInput
 {
     sum,
