@@ -63,7 +63,8 @@ double GetSummE(const double e, size_t k)
 {
     double cur, sum;
     cur = GetCurrent(k);
-    while (cur > e){
+    while (cur > e)
+    {
         sum = sum + cur;
         k++;
         cur = GetCurrent(k);
