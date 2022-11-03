@@ -34,7 +34,7 @@ int main()
     int n;
     double e = 0.0;
     size_t k = 1;
-    cout << "Введите количество членов ряда" << endl;
+    cout << "Введите количество членов последовательности" << endl;
     cin >> n;
     cout << "Введите e" << endl;
     cin >> e;
