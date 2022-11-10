@@ -45,29 +45,29 @@ int main()
 
 double GetCurrent(const size_t k)
 {
-    return pow((-1.0),k) * (1.0 / pow((k + 1),2));
+    return -1 * (1.0 / pow((k + 1),2));
 }
 
 double GetSumm(const int n, size_t k)
 {
-    double sum;
+    double sum = 0.0;
     for (int i = 1; i <=  n; i++)
     {
+        size_t k=k+1;
         sum = sum + GetCurrent(k);
-        k=k+1;
     }
 return sum;
 }
 
 double GetSummE(const double e, size_t k)
 {
-    double cur, sum;
-    cur = GetCurrent(k);
-    while (cur > e)
+    double sum = 0.0;
+    double current = GetCurrent(k);
+    while (abs(current) > e)
     {
-        sum = sum + cur;
+        sum = sum + current;
         k++;
-        cur = GetCurrent(k);
+        current = GetCurrent(k);
     }
     return sum;
 }
