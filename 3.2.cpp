@@ -23,7 +23,7 @@ double GetSumm(const int n);
 * \param k - переменная для вычисление элемента ряда.
 * \return сумма членов ряда не меньших числа e.
 */
-double GetSummE(const double e,  size_t k);
+double GetSumm(const double e,  size_t k);
 
 /**
 * \brief точка входа в программу.
@@ -39,7 +39,7 @@ int main()
     cout << "Введите e" << endl;
     cin >> e;
     cout << GetSumm(n) << endl;
-    cout << GetSummE(e, k);
+    cout << GetSumm(e, k);
     return 0;
 }
 
@@ -59,7 +59,7 @@ double GetSumm(const int n)
 return sum;
 }
 
-double GetSummE(const double e, size_t k)
+double GetSumm(const double e, size_t k)
 {
     double sum = 0.0;
     double current = GetCurrent(k);
