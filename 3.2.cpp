@@ -15,7 +15,7 @@ double GetCurrent(const size_t k);
 * \param k - переменная для вычисления элемента ряда.
 * \return сумма первых n элементов ряда.
 */
-double GetSumm(const int n, size_t k);
+double GetSumm(const int n);
 
 /**
 * \brief функция вычисления суммы членов ряда не меньших числа e.
@@ -38,7 +38,7 @@ int main()
     cin >> n;
     cout << "Введите e" << endl;
     cin >> e;
-    cout << GetSumm(n, k) << endl;
+    cout << GetSumm(n) << endl;
     cout << GetSummE(e, k);
     return 0;
 }
@@ -48,7 +48,7 @@ double GetCurrent(const size_t k)
     return -1 * (1.0 / pow((k + 1),2));
 }
 
-double GetSumm(const int n, size_t k)
+double GetSumm(const int n)
 {
     double sum = 0.0;
     for (int i = 1; i <=  n; i++)
