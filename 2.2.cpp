@@ -23,18 +23,20 @@ double GetFunction(const double a, const double x);
 */
 int main()
 {
+    const double p = 1.34;
+    const double k = 1.4;
     double x = 0.0;
     const double a = 1.65;
     double n;
     cout << "Введите x\n";
     cin >> x;
     cout << "\n";
-    if (x >= 1.34 && x < 1.4 )
+    if (x >= p && x < k )
     {
-        cout << "Невзможно посчитать фкнкцию.";
+        cout << "Невзможно посчитать функцию.";
     }
     
-    if (x < 1.34)
+    if (x < p)
     {
         n = GetFunction(x);
     }
@@ -56,5 +58,5 @@ double GetFunction(const double x)
 
 double GetFunction(const double a, const double x)
 {
-        return log(x + 7 * sqrt(x + a));
+    return log(x + 7 * sqrt(x + a));
 }
