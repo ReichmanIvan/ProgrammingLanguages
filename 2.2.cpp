@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <math.h>
 using namespace std;
 
 /**
@@ -52,18 +51,10 @@ int main()
 
 double GetFunction(const double x)
 {
-    if (x < 1.34)
-    {
-        return M_PI * x * x - 7 / x * x;
-    }
-    return 0;
+    return M_PI * x * x - 7 / x * x;
 }
 
 double GetFunction(const double a, const double x)
 {
-    if (x >= 1.4)
-    {
-        return log(x + 7*sqrt(x + a));
-    }
-    return 0;
+        return log(x + 7 * sqrt(x + a));
 }
