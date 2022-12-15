@@ -61,12 +61,8 @@ double GetSumm(const double e)
     int k = 1;
     double sum = 0.0;
     while (abs(GetCurrent(k)) >= e)
-    
     {
-        if (GetCurrent(k) >= e)
-        {
         sum = sum + GetCurrent(k);
-        }
         k += 1;
     }
     return sum;
