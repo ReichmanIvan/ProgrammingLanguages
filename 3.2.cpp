@@ -24,13 +24,6 @@ double GetSumm(const int n);
 double GetSumm(const double e);
 
 /*
- \brief функция вычисления факториала.
-* \param N - число, факториал которого нужно вычислить.
-* \return возвращает факториал.
-**/
-double GetFact(int N);
-
-/*
 * \brief точка входа в программу.
 * \return возвращает 0 в случае успеха.
 */
@@ -48,19 +41,9 @@ int main()
     return 0;
 }
 
-double GetFact(int N)
-{
-    if(N < 0) 
-        return 0; 
-    if (N == 0) 
-        return 1;
-    else 
-        return N * GetFact(N - 1);
-}
-
 double GetCurrent(const size_t k)
 {
-    return (pow(-1,k))*(1.0 / pow(GetFact(k),2));
+    return -1 / pow(k + 1,2);
 }
 
 double GetSumm(const int n)
