@@ -5,27 +5,53 @@
 using namespace std;
 
 /**
- * \brief ��������� �������� ����� �� �������.
- * \param message ����������� ��������� ��� ������������.
- * \return �����.
+ * \brief Считывает значение числа из консоли
+ * \param message Побуждающее сообщение для пользователя
+ * \return Число
  */
 size_t get_size(const string& message);
 
+/*
+*\brief Фукция которая заполняет массив случайными элементами
+*\return Возвращает указатель на заполненный массив
+*/
 int* FillRandomArray(const size_t size);
 
+/**
+ * \brief Выводит массив в консоли
+ * \param array Указатель на массив
+ */
 void PrintArray(int* array, const size_t size);
 
+/**
+ * \brief Выыодит сумму четных элементов
+ * \param array Указатель на массив
+ */
 int OutEvenNumbers(int* array, const size_t size);
 
+/**
+ * \brief Выыодит количество элементов массива, состоящих из двух цифр
+ * \param array Указатель на массив
+ */
 int DoubleElements(int* array, const size_t size);
 
+/**
+ * \brief Находит последний отрицательный элемент массива
+ * \param array Указатель на массив
+ */
 int LastNegativeIndex(int* array, const size_t size);
 
-int* ChangeElements(int* array, const size_t size, const int last_negative_index);
 /**
- * \brief ����� �������� ���������� �������.
- * \param USER_INPUT ������������ ��������� ������.
- * \param RANDOM_INPUT ������ ����������� ���������� �������.
+ * \brief Меняет последний отрицательный элемент массива на модуль первого элемента массива
+ * \param array Указатель на массив
+ * \param last_negative_index Последний отрицательный элемент массива
+ */
+int* ChangeElements(int* array, const size_t size, const int last_negative_index);
+
+/**
+ * \brief Выбор варианта заполнения массива.
+ * \param USER_INPUT Пользователь заполняет массив.
+ * \param RANDOM_INPUT Массив заполняется случайными числами.
  */
 enum class userInput
 {
@@ -33,16 +59,20 @@ enum class userInput
     RANDOM_INPUT
 };
 
+/*
+*\brief Точка входа в программу
+*\return возвращает 0 в случае успеха
+*/
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    int size = get_size("�������� ����������� ��������� ������� ");
-    cout << "������� �����, ��������������� ������ ������� ���������� �������:\n" << "\n"
-        << static_cast<int>(userInput::USER_INPUT) << " - �� ���������� ������ �������.\n"
-        << static_cast<int>(userInput::RANDOM_INPUT) << " - ��������� ������ ���������� �������.\n\n";
+    int size = get_size("Введиите колличество элементов массива ");
+    cout << "Введите число, соответствующее вашему желанию заполнения массива:\n" << "\n"
+        << static_cast<int>(userInput::USER_INPUT) << " - вы заполняете массив вручную.\n"
+        << static_cast<int>(userInput::RANDOM_INPUT) << " - заполняет массив случайными числами.\n\n";
 
     int input = 0;
-    cout << "���� ����� ������ �������� ���������� �������: ";
+    cout << "Ваше число выбора варианта заполнения массива: ";
     cin >> input;
     const auto choice = static_cast<userInput>(input);
     cout << "\n";
@@ -65,22 +95,22 @@ int main()
 
     default:
     {
-        cerr << "������� �������� ��������\n";
+        cerr << "Введено неверное значение\n";
     }
     }
     cout << "Your array is here:\n";
     PrintArray(array, size);
     cout << "\n";
-    cout << "����� ������ �����:\n";
+    cout << "сумма чётных чисел:\n";
     int even_numbers = OutEvenNumbers(array, size);
     cout << even_numbers;
     cout << "\n";
-    cout << "���������� ���������, ��������� �� ���� ����:\n";
+    cout << "количество элементов, состоящих из двух цифр:\n";
     int double_elements = DoubleElements(array, size);
     cout << double_elements << "\n";
     int last_negative_index = LastNegativeIndex(array, size);
     array = ChangeElements(array, size, last_negative_index);
-    cout << "���������� ������:\n";
+    cout << "измененный массив:\n";
     PrintArray(array, size);
 }
 
