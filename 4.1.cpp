@@ -18,6 +18,13 @@ size_t get_size(const string& message);
 int* FillRandomArray(const size_t size);
 
 /**
+ * \brief Метод, возвращающий заполненный пользователем массив.
+ * \param size размер массива.
+ * \return заполненный массив.
+ */
+int* FillUserArray(size_t size);
+
+/**
  * \brief Выводит массив в консоли
  * \param array Указатель на массив
  */
@@ -83,7 +90,7 @@ int main()
     {
     case userInput::USER_INPUT:
     {
-
+        array = FillUserArray(size);
         break;
     }
 
@@ -98,7 +105,7 @@ int main()
         cerr << "Введено неверное значение\n";
     }
     }
-    cout << "Your array is here:\n";
+    cout << "Ваш массив:\n";
     PrintArray(array, size);
     cout << "\n";
     cout << "сумма чётных чисел:\n";
@@ -116,7 +123,7 @@ int main()
 
 
 int* FillRandomArray(const size_t size)
-    {
+{
     const int minValue = -1000;
     const int maxValue = 1000;
 
@@ -134,6 +141,17 @@ int* FillRandomArray(const size_t size)
         array[index] = uniformIntDistribution(gen);
     }
 
+    return array;
+}
+
+int* FillUserArray(const size_t size)
+{
+    int* array = new int[size];
+    cout << "Введите элементы массива" << "\n";
+    for (size_t i = 0; i < size; i++)
+    {
+        cin >> array[i];
+    }
     return array;
 }
 
