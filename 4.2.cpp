@@ -22,7 +22,7 @@ int* FillRandomArray(const size_t size);
  * \param size размер массива.
  * \return заполненный массив.
  */
-int* FillUserArray(size_t size);
+int* FillUserArray(const size_t size);
 
 /**
  * \brief Выводит массив в консоли
@@ -47,7 +47,7 @@ int FirstPositiveIndex(int* array, const size_t size);
  * \param array Указатель на массив
  * \param first_negative_index Последний отрицательный элемент массива
  */
-int* ChangeElements(int* array, const size_t size, const int first_negative_index, const int first_positive_index);
+void ChangeElements(int* array, const size_t size, const int first_negative_index, const int first_positive_index);
 
 /**
  * \brief Выбор варианта заполнения массива
@@ -75,13 +75,21 @@ int* DeleteOddElements(int* array, size_t size, int newsize, int a, int b);
  * \param a 1 Граница промежутка
  * \param b 2 Граница промежутка
  */
-int WrongElements(int* array, size_t size, const int a, const int b);
+size_t GetNewSize(int* array, size_t size, const int a, const int b);
 
 /**
  * \brief Новый массив
  * \param array Указатель на массив
  */
 int* NewArray(int* array, int size);
+
+/**
+ * \brief Проверяет подходящий элемент
+ * \param element Проверяемый элемент массива
+ * \param a 1 Граница промежутка
+ * \param b 2 Граница промежутка
+*/
+bool Condition(const int element, const int a, const int b);
 
 /*
 *\brief Точка входа в программу
@@ -128,14 +136,14 @@ int main()
     cout << "\n";
     int first_positive_index = FirstPositiveIndex(array, size);
     int first_negative_index = FirstNegativeIndex(array, size);
-    array = ChangeElements(array, size, first_negative_index, first_positive_index);
+    ChangeElements(array, size, first_negative_index, first_positive_index);
     cout << "измененный массив:\n";
     PrintArray(array, size);
     cout << "\nВведите границы промежутка (a и b)" << "\n";
     cin >> a;
     cin >> b;
     cout << "\n";
-    int newsize = size - WrongElements(array, size, a, b);
+    int newsize = GetNewSize(array, size, a, b);
     cout << "измененный массив 2:\n";
     array = DeleteOddElements(array, size, newsize, a, b);
     PrintArray(array, newsize);
@@ -203,17 +211,13 @@ void PrintArray(int* array, const size_t size)
 
 int FirstNegativeIndex(int* array, const size_t size)
 {
-    int e = 0;
-    int i = size - 1;
-    while (i >= 0)
+    int firstNegativeIndex = 0;
+    while (firstNegativeIndex < size && array[firstNegativeIndex ] > 0)
     {
-        if (array[i] < 0)
-        {
-            e = i;
-        }
-        i = i - 1;
-    }
-    return e;
+        firstNegativeIndex++;
+        
+    } 
+    return firstNegativeIndex == size ? -1 : firstNegativeIndex;
 }
 
 int FirstPositiveIndex(int* array, const size_t size)
@@ -229,23 +233,25 @@ int FirstPositiveIndex(int* array, const size_t size)
     return e;
 }
 
-int* ChangeElements(int* array, const size_t size, const int first_negative_index, const int first_positive_index)
+void ChangeElements(int* array, const size_t size, const int first_negative_index, const int first_positive_index)
 {
+    int temp;
     for (size_t i = 0; i < size; i++)
     {
         if (i == first_negative_index)
         {
+            temp = array[i];
             array[i] = array[first_positive_index];
+            array[first_positive_index] = temp;
         }
     }
-    return array;
 }
 
 int* DeleteOddElements(int* array, size_t size, int newsize, int a, int b)
 {
     int d = 0;
-    int* arrayB = new int[newsize];
-    for (int i = 0; i < size; i++)
+    int* arrayB = new int[GetNewSize(array, size, a, b)];
+    for (size_t i = 0; i < size; i++)
     {
         if (array[i] < a || array[i] > b )
         {
@@ -264,17 +270,22 @@ int* DeleteOddElements(int* array, size_t size, int newsize, int a, int b)
     }
     return arrayB;
 }
- int WrongElements(int* array, size_t size, const int a, const int b)
+size_t GetNewSize(int* array, size_t size, const int a, const int b)
 {
-    int c = 0;
-    for (int i = 0; i < size; i++)
+    size_t newSize = 0;
+    for (size_t i = 0; i < size; i++)
     {
-         if (array[i] % 7 == 0 && array[i] >= a && array[i] <= b)
+         if (Condition(array[i], a, b))
          {
-             c++;
+             newSize++;
          }
     }
-    return c;
+    return newSize;
+}
+
+bool Condition(const int element, const int a, const int b)
+{
+    return !(element % 7 == 0 && element >= a && element <= b);
 }
 
  int* NewArray(int* array, int size)
@@ -282,7 +293,7 @@ int* DeleteOddElements(int* array, size_t size, int newsize, int a, int b)
      int* arrayB = new int[size];
      for (int i = 0; i < size; i++)
      {
-         if ((i + 1) % 2 == 0)
+         if (i % 2 == 1)
          {
              arrayB[i] = array[i] * array[i] + i;
          }
