@@ -1,6 +1,5 @@
 #include <iostream>
 #include <random>
-#include <ctime>
 #include <cmath>
 using namespace std;
 
@@ -53,7 +52,7 @@ int LastNegativeIndex(int* array, const size_t size);
  * \param array Указатель на массив
  * \param last_negative_index Последний отрицательный элемент массива
  */
-int* ChangeElements(int* array, const size_t size, const int last_negative_index);
+void ChangeElements(int* array, const size_t size, const int last_negative_index);
 
 /**
  * \brief Выбор варианта заполнения массива.
@@ -103,6 +102,7 @@ int main()
     default:
     {
         cerr << "Введено неверное значение\n";
+        return 1;
     }
     }
     cout << "Ваш массив:\n";
@@ -116,9 +116,14 @@ int main()
     int double_elements = DoubleElements(array, size);
     cout << double_elements << "\n";
     int last_negative_index = LastNegativeIndex(array, size);
-    array = ChangeElements(array, size, last_negative_index);
+    ChangeElements(array, size, last_negative_index);
     cout << "измененный массив:\n";
     PrintArray(array, size);
+    if (array != nullptr)
+    {
+        delete[] array; array = nullptr;
+    }
+    return 0;
 }
 
 
@@ -180,51 +185,55 @@ void PrintArray(int* array, const size_t size)
 
 int OutEvenNumbers(int* array, const size_t size)
 {
-    int e = 0;
+    int count = 0;
     for (size_t i = 0; i < size; i++)
     {
         if (array[i] % 2 == 0)
         {
-            e += array[i];
+            count += array[i];
         }
     }
-    return e;
+    return count;
 }
 
 int DoubleElements(int* array, const size_t size)
 {
-    int e = 0;
+    int count = 0;
     for (size_t i = 0; i < size; i++)
     {
         if (array[i] <= 99 && array[i] >= 10 || array[i] <= -10 && array[i] >= -99)
         {
-            e += 1;
+            count += 1;
         }
     }
-    return e;
+    return count;
 }
 
 int LastNegativeIndex(int* array, const size_t size)
 {
-    int e = 0;
-    for (size_t i = 0; i < size; i++)
+    size_t i = size - 1;
+    int count = 0;
+    while (count == 0)
     {
         if (array[i] < 0)
         {
-            e = i;
+            count = i;
         }
+        i--;
     }
-    return e;
+    return count;
 }
 
-int* ChangeElements(int* array, const size_t size, const int last_negative_index)
+void ChangeElements(int* array, const size_t size, const int last_negative_index)
 {
+    int temp;
     for (size_t i = 0; i < size; i++)
     {
         if (i == last_negative_index)
         {
+            temp = array[i];
             array[i] = abs(array[0]);
+            array[0] = temp;
         }
     }
-    return array;
 }
