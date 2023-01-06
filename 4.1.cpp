@@ -121,7 +121,8 @@ int main()
     PrintArray(array, size);
     if (array != nullptr)
     {
-        delete[] array; array = nullptr;
+        delete[] array;
+        array = nullptr;
     }
     return 0;
 }
